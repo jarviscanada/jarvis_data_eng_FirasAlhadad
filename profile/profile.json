@@ -1,0 +1,83 @@
+{
+  "education": [
+    {
+      "degree": "Diploma in Computers and Information Tech",
+      "department": "Computer Sciences",
+      "duration": "2019-2023",
+      "school_name": "McGill University",
+      "awards_achievements": []
+    }
+  ],
+  "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_FirasAlhadad",
+  "highlighted_projects": [
+    {
+      "name": "Raspberry Pi Internet Connectivity Watcher",
+      "description": "The Raspberry Pi Internet Connectivity Watcher is a sophisticated Bash script designed to monitor Internet connectivity in real-time. This essential tool ensures the seamless functionality of company client devices by promptly detecting and addressing any disruptions to their online access. Through regular checks and proactive troubleshooting methods such as automated Wi-Fi adjustments and seamless network transitions, this solution maintains uninterrupted connectivity, bolstering operational efficiency and client satisfaction.",
+      "git_url": null
+    },
+    {
+      "name": "Multi-vendor Platform Database Architecture for Shop and Restaurant Management ",
+      "description": "Developed a comprehensive database architecture tailored for a multi-vendor platform facilitating operations across diverse shops and restaurants. Leveraging SQL and MySQL RDBMS in tandem with Python, the project encompassed the intricate design, normalization, and management of a robust database infrastructure. This system efficiently accommodated a myriad of data related to inventory, sales, orders, menus, and customer interactions. Python scripts were instrumental in seamlessly integrating data from various sources, ensuring the accuracy and integrity of information stored within the database. This scalable and flexible architecture serves as the cornerstone for efficient management and seamless operations within the platform, facilitating enhanced user experiences and business growth.",
+      "git_url": null
+    }
+  ],
+  "jarvis_projects": [
+    {
+      "name": "Cluster Monitor",
+      "description": "Developed a Linux cluster monitor utilizing Bash and PostgreSQL languages, orchestrated within Docker containers for streamlined shipping and deployment in a Unix environment. The monitor efficiently gathers hardware specifications, storing them in a dedicated database table. Additionally, it captures host usage data at one-minute intervals, meticulously organizing this information into a separate table within the same database. This comprehensive monitoring solution ensures real-time insights into system performance and resource utilization.",
+      "git_url": "https://github.com/jarviscanada/jarvis_data_eng_FirasAlhadad"
+    }
+  ],
+  "name": "Firas Alhadad",
+  "others": [
+    {
+      "title": "Certificates",
+      "bullets": [
+        "SQL certificate from Test dome",
+        "Diploma in Proficiency -English for Professional Communication"
+      ]
+    },
+    {
+      "title": "Activities/Hobbies",
+      "bullets": [
+        "Hiking or outdoor activities",
+        "Photography",
+        "Swimming"
+      ]
+    }
+  ],
+  "professional_experience": [
+    {
+      "title": "Data engineer",
+      "company": "Jarvis",
+      "duration": "2024-present",
+      "description": "Engaged as a Data Engineer at Jarvis, actively involved in the software engineering domain, employing cutting-edge technologies and methodologies to drive innovation and optimize data solutions. Responsibilities include designing, implementing, and maintaining robust data pipelines, ensuring the reliability, scalability, and efficiency of data processing workflows. Collaborating closely with cross-functional teams, I contribute to the development of data-driven solutions, leveraging my expertise to deliver impactful insights and drive business growth"
+    },
+    {
+      "title": "IT Technician",
+      "company": "GlobalStep",
+      "duration": "2023",
+      "description": "I was responsible for providing technical assistance and support to end-users regarding computer systems, hardware, software, and network issues. They troubleshoot problems, diagnose and resolve technical issues, and escalate complex problems when necessary. IT Technicians also assist with the setup, installation, and configuration of computer systems and software, ensure system security measures are in place, and maintain accurate records of technical tasks. Additionally, they may provide training to users and contribute to the development and implementation of IT policies and procedures."
+    },
+    {
+      "title": "Full Time Student",
+      "company": "McGill University",
+      "duration": "2019-2023",
+      "description": " Completed a comprehensive curriculum covering various IT domains and Database Design. Material covered during the study; we went through (Web Services-Web Development-Networking Fundamentals-Operating Systems Admin-Programming Techniques 1-Programming Techniques 2-Information System Security-Data Structures & Algorithms-Mobile Application Development-Database Design & Bus App Dev)."
+    }
+  ],
+  "skills": {
+    "proficient": [
+      "Java",
+      "JavaScript",
+      "HTML",
+      "Linux/Bash",
+      "RDBMS/SQL",
+      "Agile/Scrum",
+      "Git"
+    ],
+    "competent": [
+      "Planning and Organizational Skills",
+      "Communication",
+      "Coaching, Adaptability",
+      "
