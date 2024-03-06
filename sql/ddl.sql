@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS host_info
 CREATE TABLE IF NOT EXISTS host_usage
 	(
 
+	
 		"timestamp"    TIMESTAMP NOT NULL, 
      		host_id        SERIAL NOT NULL, 
      		memory_free    INT4 NOT NULL, 
