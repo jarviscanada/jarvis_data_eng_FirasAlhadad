@@ -6,6 +6,7 @@ if [ "$#" -ne 5 ]; then
     exit 1
 fi
 
+
 #assign CLI arguments to variables
 
 psql_host=$1
