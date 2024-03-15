@@ -1,46 +1,57 @@
-#! /bin/sh
+#!/bin/bash
 
-# Check # of args
+# Check number of arguments
 if [ "$#" -ne 5 ]; then
-    echo "Illegal number of parameters"
+    echo "Usage: $0 <psql_host> <psql_port> <db_name> <psql_user> <psql_password>"
     exit 1
 fi
 
-
-#assign CLI arguments to variables
-
+# Assign CLI arguments to variables
 psql_host=$1
 psql_port=$2
 db_name=$3
 psql_user=$4
 psql_password=$5
 
+# Log file
+log_file="script.log"
 
-lscpu_out=`lscpu`
+# Function to log messages
+log() {
+    local timestamp=$(date +"%Y-%m-%d %T")
+    echo "[$timestamp] $1" >> "$log_file"
+}
+
+# Log start of script
+log "Starting script"
+
+# Retrieve hardware specifications
 hostname=$(hostname -f)
-
-# Retrieve hardware specification variables
-
-hostname=$(hostname -f)
-cpu_number=$(echo "$lscpu_out"  | egrep "^CPU\(s\):" | awk '{print $2}' | xargs)
-cpu_architecture=$(echo "$lscpu_out" | grep "^Arc" | awk '{print $2}')
-cpu_model=$(echo "$lscpu_out" | grep "M.*me:" | awk '{ print substr($0, index($0,$3)) }')
-cpu_mhz=$(echo "$lscpu_out" | grep "^C.*z:" | awk '{print $3}')
-l2_cache=$(echo "$lscpu_out" | grep "L2.*e:" | awk '{print $3}' | sed 's/.$//')
+cpu_info=$(lscpu)
+cpu_number=$(echo "$cpu_info" | awk '/^CPU\(s\)/ {print $2}')
+cpu_architecture=$(echo "$cpu_info" | awk '/^Architecture:/ {print $2}')
+cpu_model=$(echo "$cpu_info" | awk '/^Model name:/ {print substr($0, index($0,$3))}')
+cpu_mhz=$(echo "$cpu_info" | awk '/^CPU MHz:/ {print $3}')
+l2_cache=$(echo "$cpu_info" | awk '/^L2 cache:/ {print $3}' | sed 's/.$//')
 total_mem=$(vmstat --unit M | tail -1 | awk '{print $4}')
-timestamp=$(vmstat -t | awk '{print $18 " " $19}' | tail -1)
+timestamp=$(vmstat -t | awk 'END {print $18 " " $19}')
 
-# Subquery to find matching id in host_info table
-id="(SELECT COUNT (*) + 1 from host_info)";
+# Construct SQL insert statement (parameterized query)
+insert_stmt="INSERT INTO host_info(hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, l2_cache, timestamp, total_mem) VALUES($1, $2, $3, $4, $5, $6, $7, $8)"
 
-# PSQL command: Inserts hardware specufications data into host_info table
+# Log SQL insert statement
+log "SQL insert statement: $insert_stmt"
 
-insert_stmt="INSERT INTO host_info(id, hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, l2_cache, timestamp, total_mem) VALUES($id,'$hostname','$cpu_number', '$cpu_architecture','$cpu_model', '$cpu_mhz', '$l2_cache', '$timestamp', '$total_mem');"
+# Set up environment variable for psql command
+export PGPASSWORD="$psql_password"
 
-#set up env var for pql cmd
-export PGPASSWORD=$psql_password
+# Execute SQL insert statement
+psql_command="psql -h $psql_host -p $psql_port -d $db_name -U $psql_user -c \"$insert_stmt\""
+log "Executing: $psql_command"
+eval "$psql_command"
+exit_status=$?
 
-#Insert date into a database
-psql -h $psql_host -p $psql_port -d $db_name -U $psql_user -c "$insert_stmt"
-exit $?
+# Log end of script
+log "Script execution completed with exit status $exit_status"
 
+exit $exit_status
